@@ -1,0 +1,22 @@
+{
+  "name": "my-auth",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon --watch src src/index.js"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "dotenv": "^4.0.0",
+    "fastify": "^0.39.1",
+    "fastify-plugin": "^0.2.1",
+    "mongoose": "^5.0.1",
+    "pino": "^4.10.3"
+  },
+  "devDependencies": {
+    "eslint": "^4.14.0",
+    "eslint-config-kitty": "^1.4.5",
+    "nodemon": "^1.14.3"
+  }
+}
