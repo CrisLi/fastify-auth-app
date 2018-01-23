@@ -23,6 +23,10 @@ module.exports = async (fastify) => {
 
   const { User } = fastify.mongoose.models;
 
+  const fetchUserOptions = {
+    beforeHandler: fastify.auth([fastify.jwtAuth])
+  };
+
   fastify.post('/users', userCreationOptions, async (req) => {
     const user = new User(req.body);
     await user.save();
@@ -30,14 +34,9 @@ module.exports = async (fastify) => {
     return User.findById(user.id);
   });
 
-  fastify.get('/users', async (req, reply) => {
-    try {
-      await req.jwtVerify();
-      return User.find({});
-    } catch (e) {
-      reply.code(403);
-      throw new Error('No access');
-    }
+  fastify.get('/users', fetchUserOptions, async (req) => {
+    console.log(req.user);
+    return User.find({});
   });
 
 };
